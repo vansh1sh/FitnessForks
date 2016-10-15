@@ -1,7 +1,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:background="#000000"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:orientation = "vertical"
@@ -21,7 +21,16 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".MainActivity">
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:textColor="#00b5ff"
+            android:paddingBottom="20dp"
+            android:text="Sign Up"
+            android:id="@+id/textView" />
 
         <EditText
             android:id="@+id/editTextUsername"
@@ -121,9 +130,9 @@
             android:background="#00b5ff"
             android:fontFamily="segoe UI"
             android:gravity="center"
-
+            android:onClick="clickNext"
             android:textColor="#ffffff"
-            android:text="REGISTER"
+            android:text="NEXT"
             android:textSize="15sp"
             android:textStyle="normal"
             android:layout_gravity="center_horizontal" />
