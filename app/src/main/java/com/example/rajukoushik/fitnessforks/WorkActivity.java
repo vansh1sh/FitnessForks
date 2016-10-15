@@ -5,16 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MetricsActivity extends AppCompatActivity {
+public class WorkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_metrics);
+        setContentView(R.layout.activity_work);
     }
 
-    public void clickingNext(View view) {
-        Intent intent = new Intent(this, WorkActivity.class);
+    public void clickNew(View view) {
+
+        Intent intent = new Intent(this, MetricsActivity.class);
         startActivity(intent);
     }
 }
