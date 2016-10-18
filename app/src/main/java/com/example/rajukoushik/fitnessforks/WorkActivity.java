@@ -15,7 +15,7 @@ public class WorkActivity extends AppCompatActivity {
 
     public void clickNew(View view) {
 
-        Intent intent = new Intent(this, MetricsActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

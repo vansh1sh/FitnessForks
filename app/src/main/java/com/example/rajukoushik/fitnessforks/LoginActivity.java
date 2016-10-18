@@ -20,7 +20,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void btnLogin(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, IntroActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void btnNotNow(View view) {
+
+        Intent intent = new Intent(this, IntroActivity.class);
         startActivity(intent);
 
     }
