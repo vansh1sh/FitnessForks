@@ -10,12 +10,18 @@ public class WorkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_work);
+        setContentView(R.layout.activity_work2);
     }
 
     public void clickNew(View view) {
 
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, GoalsActivity.class);
+        startActivity(intent);
+    }
+
+    public void btnNext(View view) {
+
+        Intent intent = new Intent(this, GoalsActivity.class);
         startActivity(intent);
     }
 }

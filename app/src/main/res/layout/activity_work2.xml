@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.rajukoushik.fitnessforks.WorkActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dp"
+        android:text="How active are you ?"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ImageView
+
+        android:id="@+id/low"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/low" />
+
+    <ImageView
+
+        android:layout_width="150dp"
+
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/moderate" />
+
+    <ImageView
+
+        android:layout_width="150dp"
+
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/high" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#00b5ff"
+        android:fontFamily="segoe UI"
+        android:onClick="btnNext"
+
+        android:text="    Next    "
+        android:textColor="#ffffff" />
+
+
+</LinearLayout>
