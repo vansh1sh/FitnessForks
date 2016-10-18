@@ -16,7 +16,7 @@
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".RegisterActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -36,6 +36,10 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme"></activity>
     </application>
 

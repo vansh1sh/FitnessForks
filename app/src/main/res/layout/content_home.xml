@@ -38,6 +38,7 @@
             android:id="@+id/loginButtonId"
             android:layout_width="wrap_content"
             android:layout_height="50sp"
+            android:onClick="btnMeals6"
 
             android:fontFamily="segoe UI"
 
@@ -143,24 +144,7 @@
         android:layout_alignLeft="@+id/textView6"
         android:layout_alignStart="@+id/textView6" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
 
-        android:layout_below="@+id/button2"
-        tools:context=".CardViewActivity">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
-            android:background="@drawable/btnbg1"
-            android:layout_width="match_parent"
-            android:elevation="5dp"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
-
-    </RelativeLayout>
 
     <Button
         android:id="@+id/meals12"

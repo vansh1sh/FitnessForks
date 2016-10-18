@@ -1,8 +1,10 @@
 package com.example.rajukoushik.fitnessforks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,10 +23,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "CardViewActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +33,7 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        //card
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapter(getDataSet());
-        mRecyclerView.setAdapter(mAdapter);
-        //end of card
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -95,26 +87,9 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    protected void onResume() {
-        super.onResume();
-        ((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter
-                .MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                Log.i(LOG_TAG, " Clicked on Item " + position);
-            }
-        });
-    }
 
-    private ArrayList<FoodObject> getDataSet() {
-        ArrayList results = new ArrayList<FoodObject>();
-        for (int index = 0; index < 20; index++) {
-            FoodObject obj = new FoodObject("Some Primary Text " + index,
-                    "Secondary " + index);
-            results.add(index, obj);
-        }
-        return results;
-    }
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -138,5 +113,10 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void btnMeals6(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }
