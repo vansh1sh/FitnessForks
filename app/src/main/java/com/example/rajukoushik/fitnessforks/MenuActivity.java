@@ -1,10 +1,12 @@
 package com.example.rajukoushik.fitnessforks;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,6 +87,47 @@ public class MenuActivity extends AppCompatActivity {
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
+
+
+                //add date time dialog
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(
+                        MenuActivity.this);
+                dialog.setTitle("Begning");
+                dialog.setPositiveButton("ok",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+
+                            }
+                        });
+                dialog.setNegativeButton("cancel",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                dialog.dismiss();
+                            }
+                        });
+                View picker=getLayoutInflater().inflate(R.layout.custom_dialog,
+                        null);
+                dialog.setView(picker);
+
+                dialog.show();
+
+
+
+
+                //end of date time dialog
+
+
+
+
                 HomeActivity ha = new HomeActivity();
 
                 Toast.makeText(MenuActivity.this, "Added to cart = "+ getItemCounter()+ "itemCount"+ha.getItemCount() ,
@@ -92,6 +135,8 @@ public class MenuActivity extends AppCompatActivity {
                 Log.i(LOG_TAG, " Clicked on Item " + position);
                 cartList.add(((MyRecyclerViewAdapter) mAdapter).getDataObject(position));
                 itemCounter = itemCounter + 1;
+
+
 
 
                 if(itemCounter == ha.getItemCount() )
