@@ -8,11 +8,21 @@ public class FoodObject
     private String mText1;
     private String mText2;
     private String mText3;
+    private int id;
 
-    FoodObject (String text1, String text2, String text3){
+    FoodObject (int id,String text1, String text2, String text3){
         mText1 = text1;
         mText2 = text2;
         mText3 = text3;
+        this.id = id;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getmText1() {

@@ -157,10 +157,11 @@ public class HomeActivity extends AppCompatActivity
                                 String name =  o.getString("name");
                                 String desc = o.getString("description");
                                 String imgUrl = o.getString("image_url");
+                                int id = o.getInt("id");
                                 foodList.add(i,name);
                                 descList.add(i,desc);
 
-                                FoodObject obj = new FoodObject(name,desc,imgUrl);
+                                FoodObject obj = new FoodObject(id, name,desc,imgUrl);
                                 results.add(i, obj);
                                 MenuActivity ma = new MenuActivity();
                                 ma.set_dataset(results);
@@ -186,5 +187,100 @@ public class HomeActivity extends AppCompatActivity
         requestQueue.add(stringRequest);
 
 
+    }
+
+    public void btnMeals12(View view) {
+
+        setItemCount(12);
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, METRIC_URL + "?token=" + (new PrefManger(HomeActivity.this)).getToken(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jobj = new JSONObject(response);
+                            JSONArray foodItems = jobj.getJSONArray("items");
+                            for(int i  = 0 ; i < foodItems.length(); i ++) {
+                                JSONObject o = foodItems.getJSONObject(i);
+                                String name =  o.getString("name");
+                                String desc = o.getString("description");
+                                String imgUrl = o.getString("image_url");
+                                int id = o.getInt("id");
+                                foodList.add(i,name);
+                                descList.add(i,desc);
+
+                                FoodObject obj = new FoodObject(id, name,desc,imgUrl);
+                                results.add(i, obj);
+                                MenuActivity ma = new MenuActivity();
+                                ma.set_dataset(results);
+                            }
+                            Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+                            startActivity(intent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomeActivity.this,error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    public void btnMeals15(View view) {
+
+        setItemCount(15);
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, METRIC_URL + "?token=" + (new PrefManger(HomeActivity.this)).getToken(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jobj = new JSONObject(response);
+                            JSONArray foodItems = jobj.getJSONArray("items");
+                            for(int i  = 0 ; i < foodItems.length(); i ++) {
+                                JSONObject o = foodItems.getJSONObject(i);
+                                String name =  o.getString("name");
+                                String desc = o.getString("description");
+                                String imgUrl = o.getString("image_url");
+                                int id = o.getInt("id");
+                                foodList.add(i,name);
+                                descList.add(i,desc);
+
+                                FoodObject obj = new FoodObject(id, name,desc,imgUrl);
+                                results.add(i, obj);
+                                MenuActivity ma = new MenuActivity();
+                                ma.set_dataset(results);
+                            }
+                            Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+                            startActivity(intent);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomeActivity.this,error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+
+
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }

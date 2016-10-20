@@ -51,15 +51,15 @@ public class GoalsActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    image.setColorFilter(Color.argb(50, 0, 0, 0));
+                    image1.setColorFilter(Color.argb(50, 0, 0, 0));
                     rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
                 }
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    image.setColorFilter(Color.argb(0, 0, 0, 0));
+                    image1.setColorFilter(Color.argb(0, 0, 0, 0));
                 }
                 if(event.getAction() == MotionEvent.ACTION_MOVE){
                     if(!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())){
-                        image.setColorFilter(Color.argb(0, 0, 0, 0));
+                        image1.setColorFilter(Color.argb(0, 0, 0, 0));
                     }
                 }
                 Intent intent = new Intent(GoalsActivity.this, HomeActivity.class);
@@ -75,15 +75,15 @@ public class GoalsActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN){
-                    image.setColorFilter(Color.argb(50, 0, 0, 0));
+                    image2.setColorFilter(Color.argb(50, 0, 0, 0));
                     rect = new Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
                 }
                 if(event.getAction() == MotionEvent.ACTION_UP){
-                    image.setColorFilter(Color.argb(0, 0, 0, 0));
+                    image2.setColorFilter(Color.argb(0, 0, 0, 0));
                 }
                 if(event.getAction() == MotionEvent.ACTION_MOVE){
                     if(!rect.contains(v.getLeft() + (int) event.getX(), v.getTop() + (int) event.getY())){
-                        image.setColorFilter(Color.argb(0, 0, 0, 0));
+                        image2.setColorFilter(Color.argb(0, 0, 0, 0));
                     }
                 }
                 Intent intent = new Intent(GoalsActivity.this, HomeActivity.class);

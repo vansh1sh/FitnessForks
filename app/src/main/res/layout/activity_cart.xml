@@ -7,6 +7,41 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg1"
     tools:context="com.example.rajukoushik.fitnessforks.CartActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartText"
+        android:text="Your cart"
+
+        android:paddingBottom="20dp"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:background="@drawable/btnbg1"
+        android:layout_width="match_parent"
+
+        android:layout_below="@+id/cartText"
+        android:elevation="5dp"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkout"
+        android:fontFamily="segoe UI"
+
+        android:background="#f48342"
+        android:textColor="#ffffff"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

@@ -108,7 +108,7 @@
         android:id="@+id/meals12"
         android:layout_width="wrap_content"
         android:layout_height="50sp"
-
+        android:onClick="btnMeals12"
         android:fontFamily="segoe UI"
 
         android:background="#f48342"
@@ -129,6 +129,7 @@
 
         android:background="#f48342"
         android:textColor="#ffffff"
+        android:onClick="btnMeals15"
         android:text="12 Meals"
         android:textSize="15sp"
         android:textStyle="normal"

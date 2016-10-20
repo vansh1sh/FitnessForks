@@ -18,6 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -31,10 +36,13 @@ import com.android.volley.toolbox.Volley;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -47,12 +55,21 @@ public class MenuActivity extends AppCompatActivity {
         return itemCounter;
     }
 
+    public ArrayList<FoodObject> getCart()
+    {
+        return  cartList;
+    }
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static String LOG_TAG = "CardViewActivity";
     private static ArrayList<FoodObject> dataset = new ArrayList<>();
     private static ArrayList<FoodObject> cartList = new ArrayList<>();
+    static String  finalTimeDate;
+    static TextView progressView;
+
+    private static ArrayList<String> dateList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +77,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        progressView = (TextView) findViewById(R.id.textView7);
 
 
         //card
@@ -91,38 +109,6 @@ public class MenuActivity extends AppCompatActivity {
 
                 //add date time dialog
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(
-                        MenuActivity.this);
-                dialog.setTitle("Begning");
-                dialog.setPositiveButton("ok",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-
-                            }
-                        });
-                dialog.setNegativeButton("cancel",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
-                            }
-                        });
-                View picker=getLayoutInflater().inflate(R.layout.custom_dialog,
-                        null);
-                dialog.setView(picker);
-
-                dialog.show();
-
-
-
-
                 //end of date time dialog
 
 
@@ -130,11 +116,15 @@ public class MenuActivity extends AppCompatActivity {
 
                 HomeActivity ha = new HomeActivity();
 
-                Toast.makeText(MenuActivity.this, "Added to cart = "+ getItemCounter()+ "itemCount"+ha.getItemCount() ,
+                Toast.makeText(MenuActivity.this, "Added to cart = "+ getItemCounter()+ "itemCount"+ha.getItemCount() + finalTimeDate ,
                         Toast.LENGTH_LONG).show();
                 Log.i(LOG_TAG, " Clicked on Item " + position);
                 cartList.add(((MyRecyclerViewAdapter) mAdapter).getDataObject(position));
                 itemCounter = itemCounter + 1;
+
+                int tempo = ha.getItemCount() - itemCounter ;
+
+                        progressView.setText(""+tempo+" more to go");
 
 
 
@@ -144,7 +134,90 @@ public class MenuActivity extends AppCompatActivity {
 
                     //post Items
 
-                    //not posting items over here
+                    boolean result = false;
+                    HttpClient hc = new DefaultHttpClient();
+                    String message;
+
+
+
+
+                    try {
+
+                        Calendar c = Calendar.getInstance();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String formattedDate = df.format(c.getTime());
+                        RequestQueue requestQueue = Volley.newRequestQueue(MenuActivity.this);
+                        String URL = "http://192.168.43.137:8000/api/post/order/";
+                        JSONObject jsonBody = new JSONObject();
+                        PrefManger prefManger =new PrefManger(MenuActivity.this);
+                        String tempToken = prefManger.getToken();
+                        Log.e("shjg",tempToken);
+
+                        HomeActivity hact = new HomeActivity();
+
+
+                        jsonBody.put("token",tempToken);
+
+                        jsonBody.put("number_of_items",hact.getItemCount() );
+                        jsonBody.put("price", 249*(hact.getItemCount()));
+
+                        JSONObject arr = new JSONObject();
+
+                        for(int i = 0 ; i <  hact.getItemCount() ; i ++) {
+                            String array_label = String.valueOf(i+1);
+                            JSONObject array_obj = new JSONObject();
+
+                            array_obj.put("item_id", cartList.get(i).getId());
+
+
+                            array_obj.put("expected_time", formattedDate+"0530");
+
+                            arr.put(array_label, array_obj);
+                        }
+
+                        jsonBody.put("food_items", arr);
+
+                        final String mRequestBody = jsonBody.toString();
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.i("VOLLEY", response);
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("VOLLEY", error.toString());
+                            }
+                        }) {
+                            @Override
+                            public String getBodyContentType() {
+                                return "application/json; charset=utf-8";
+                            }
+
+                            @Override
+                            public byte[] getBody() {
+                                return mRequestBody.getBytes();
+                            }
+
+                            @Override
+                            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                                String responseString = "";
+                                if (response != null) {
+                                    responseString = String.valueOf(response.statusCode);
+                                    // can get more details such as response.headers
+                                }
+                                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+                            }
+                        };
+
+                        requestQueue.add(stringRequest);
+
+                        Intent intent = new Intent(MenuActivity.this, CartActivity.class);
+                        startActivity(intent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
 
@@ -162,6 +235,17 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public static java.util.Date getDateFromDatePicker(DatePicker datePicker){
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year =  datePicker.getYear();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        return calendar.getTime();
     }
 
 
@@ -203,5 +287,4 @@ public class MenuActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
