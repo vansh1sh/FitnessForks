@@ -38,10 +38,21 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String METRIC_URL = "http://192.168.43.137:8000/api/get/food_items/";
+    static int itemCount = 0;
 
     ArrayList<String> foodList = new ArrayList<String>();
     ArrayList<String> descList = new ArrayList<String>();
     ArrayList<FoodObject> results = new ArrayList<FoodObject>();
+
+    public void setItemCount(int x)
+    {
+        itemCount = x;
+    }
+
+    public int getItemCount()
+    {
+        return itemCount;
+    }
 
 
 
@@ -128,6 +139,10 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void btnMeals6(View view) {
+
+        //setting countItems
+
+        setItemCount(6);
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, METRIC_URL + "?token=" + (new PrefManger(HomeActivity.this)).getToken(),

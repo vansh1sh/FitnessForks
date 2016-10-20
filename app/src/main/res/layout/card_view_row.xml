@@ -44,7 +44,23 @@
                 android:layout_height="wrap_content"
                 android:textSize="9sp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/imgView1"/>
+                android:layout_below="@+id/imgView1"
+                android:paddingBottom="5dp"/>
+
+            <Button
+
+                style="?android:attr/buttonStyleSmall"
+                android:id="@+id/cartAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#f48342"
+                android:fontFamily="segoe UI"
+
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true"
+                android:text="  ADD to cart  "
+                android:textColor="#ffffff" />
 
 
 

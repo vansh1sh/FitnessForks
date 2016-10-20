@@ -84,7 +84,10 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     }
 
-
+    public FoodObject getDataObject(int i)
+    {
+        return mDataset.get(i);
+    }
 
     public void addItem(FoodObject dataObj, int index) {
         mDataset.add(index, dataObj);

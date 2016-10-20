@@ -1,9 +1,12 @@
 package com.example.rajukoushik.fitnessforks;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +16,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -20,11 +38,19 @@ public class MenuActivity extends AppCompatActivity {
 
     //url -- image_url
 
+    public int itemCounter = 0;
+
+    public int getItemCounter()
+    {
+        return itemCounter;
+    }
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static String LOG_TAG = "CardViewActivity";
     private static ArrayList<FoodObject> dataset = new ArrayList<>();
+    private static ArrayList<FoodObject> cartList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +85,50 @@ public class MenuActivity extends AppCompatActivity {
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
+                HomeActivity ha = new HomeActivity();
+
+                Toast.makeText(MenuActivity.this, "Added to cart = "+ getItemCounter()+ "itemCount"+ha.getItemCount() ,
+                        Toast.LENGTH_LONG).show();
                 Log.i(LOG_TAG, " Clicked on Item " + position);
+                cartList.add(((MyRecyclerViewAdapter) mAdapter).getDataObject(position));
+                itemCounter = itemCounter + 1;
+
+
+                if(itemCounter == ha.getItemCount() )
+                {
+
+                    //post Items
+
+                    //not posting items over here
+
+
+
+                    //end of post items
+                    Intent intent = new Intent(MenuActivity.this, CartActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
     }
 
+    public void postItems()
+    {
+
+
+
+    }
+
+
     private ArrayList<FoodObject> getDataSet() {
 
         /**
-        ArrayList results = new ArrayList<FoodObject>();
-        for (int index = 0; index < 20; index++) {
-            FoodObject obj = new FoodObject("Some Primary Text " + index,
-                    "Secondary " + index);
-            results.add(index, obj);
-        }
+         ArrayList results = new ArrayList<FoodObject>();
+         for (int index = 0; index < 20; index++) {
+         FoodObject obj = new FoodObject("Some Primary Text " + index,
+         "Secondary " + index);
+         results.add(index, obj);
+         }
          **/
         return this.dataset;
     }
