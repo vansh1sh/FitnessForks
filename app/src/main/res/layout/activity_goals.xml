@@ -20,7 +20,7 @@
 
     <ImageView
 
-        android:id="@+id/low"
+        android:id="@+id/muscle"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -29,7 +29,7 @@
     <ImageView
 
         android:layout_width="150dp"
-
+        android:id="@+id/loseweigt"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:src="@drawable/loose_weight" />
@@ -37,7 +37,7 @@
     <ImageView
 
         android:layout_width="150dp"
-
+        android:id="@+id/maintain"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:src="@drawable/maintain" />
