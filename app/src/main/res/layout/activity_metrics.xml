@@ -71,7 +71,8 @@
         android:background="@drawable/customized_box"
         android:fontFamily="segoe UI"
         android:hint="Age"
-        android:inputType="text"
+
+        android:inputType="date"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"

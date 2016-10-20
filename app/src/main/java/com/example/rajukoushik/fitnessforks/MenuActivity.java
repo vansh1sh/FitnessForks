@@ -18,10 +18,13 @@ import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
+    //url -- image_url
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static String LOG_TAG = "CardViewActivity";
+    private static ArrayList<FoodObject> dataset = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +65,20 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private ArrayList<FoodObject> getDataSet() {
+
+        /**
         ArrayList results = new ArrayList<FoodObject>();
         for (int index = 0; index < 20; index++) {
             FoodObject obj = new FoodObject("Some Primary Text " + index,
                     "Secondary " + index);
             results.add(index, obj);
         }
-        return results;
+         **/
+        return this.dataset;
+    }
+
+    public void set_dataset(ArrayList<FoodObject> a) {
+        this.dataset = a;
     }
 
     @Override
