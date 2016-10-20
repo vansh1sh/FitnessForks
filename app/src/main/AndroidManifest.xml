@@ -52,7 +52,13 @@
             android:label="@string/title_activity_intro"
             android:theme="@style/AppTheme" />
         <activity android:name=".GoalsActivity" />
-        <activity android:name=".CartActivity"></activity>
+        <activity android:name=".CartActivity" />
+        <activity android:name=".finalpay">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.rajukoushik.fitnessforks.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

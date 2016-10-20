@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Checkout"
         android:fontFamily="segoe UI"
+        android:onClick="onCheckout"
 
         android:background="#f48342"
         android:textColor="#ffffff"

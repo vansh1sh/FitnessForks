@@ -45,7 +45,7 @@ public class GoalsActivity extends AppCompatActivity {
         });
 
         final ImageView image1 = (ImageView) findViewById(R.id.loseweigt);
-        image.setOnTouchListener(new View.OnTouchListener() {
+        image1.setOnTouchListener(new View.OnTouchListener() {
             private Rect rect;
 
             @Override
@@ -69,7 +69,7 @@ public class GoalsActivity extends AppCompatActivity {
         });
 
         final ImageView image2 = (ImageView) findViewById(R.id.maintain);
-        image.setOnTouchListener(new View.OnTouchListener() {
+        image2.setOnTouchListener(new View.OnTouchListener() {
             private Rect rect;
 
             @Override

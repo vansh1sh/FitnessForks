@@ -68,6 +68,7 @@ public class MenuActivity extends AppCompatActivity {
     private static ArrayList<FoodObject> cartList = new ArrayList<>();
     static String  finalTimeDate;
     static TextView progressView;
+    static TextView countText;
 
     private static ArrayList<String> dateList = new ArrayList<>();
 
@@ -78,6 +79,9 @@ public class MenuActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         progressView = (TextView) findViewById(R.id.textView7);
+        countText =(TextView)findViewById(R.id.textMeal);
+        HomeActivity haa = new HomeActivity();
+        countText.setText("Select "+haa.getItemCount()+ " Meals");
 
 
         //card
@@ -116,7 +120,7 @@ public class MenuActivity extends AppCompatActivity {
 
                 HomeActivity ha = new HomeActivity();
 
-                Toast.makeText(MenuActivity.this, "Added to cart = "+ getItemCounter()+ "itemCount"+ha.getItemCount() + finalTimeDate ,
+                Toast.makeText(MenuActivity.this, "Item Added to cart" ,
                         Toast.LENGTH_LONG).show();
                 Log.i(LOG_TAG, " Clicked on Item " + position);
                 cartList.add(((MyRecyclerViewAdapter) mAdapter).getDataObject(position));
@@ -125,6 +129,7 @@ public class MenuActivity extends AppCompatActivity {
                 int tempo = ha.getItemCount() - itemCounter ;
 
                         progressView.setText(""+tempo+" more to go");
+
 
 
 
@@ -170,7 +175,7 @@ public class MenuActivity extends AppCompatActivity {
                             array_obj.put("item_id", cartList.get(i).getId());
 
 
-                            array_obj.put("expected_time", formattedDate+"0530");
+                            array_obj.put("expected_time", formattedDate+"+0530");
 
                             arr.put(array_label, array_obj);
                         }

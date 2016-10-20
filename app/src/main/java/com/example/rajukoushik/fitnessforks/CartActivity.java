@@ -1,5 +1,6 @@
 package com.example.rajukoushik.fitnessforks;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -39,20 +40,6 @@ public class CartActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setOnTouchListener(null);
         //end of card
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Welcome to Fitness Forks !!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
-
-
-
     }
 
     private ArrayList<FoodObject> getDataSet() {
@@ -77,5 +64,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
 
-
+    public void onCheckout(View view) {
+        Intent intent = new Intent(this, finalpay.class);
+        startActivity(intent);
+    }
 }

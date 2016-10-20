@@ -191,7 +191,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void btnMeals12(View view) {
 
-        setItemCount(12);
+        setItemCount(15);
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, METRIC_URL + "?token=" + (new PrefManger(HomeActivity.this)).getToken(),
@@ -239,7 +239,7 @@ public class HomeActivity extends AppCompatActivity
 
     public void btnMeals15(View view) {
 
-        setItemCount(15);
+        setItemCount(12);
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, METRIC_URL + "?token=" + (new PrefManger(HomeActivity.this)).getToken(),
